@@ -2,9 +2,11 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 const crypto = require("crypto");
+var cors = require('cors')
 const { p5, sketch, getCanvas } = require("./p5");
 const app = express();
 app.use(express.json());
+app.use(cors());
 const port = process.env.PORT;
 
 let p5Instance = p5.createSketch(sketch);
