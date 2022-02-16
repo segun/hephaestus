@@ -5,7 +5,7 @@ const crypto = require("crypto");
 const { p5, sketch, getCanvas } = require("./p5");
 const app = express();
 app.use(express.json());
-const port = 8380;
+const port = process.env.PORT;
 
 let p5Instance = p5.createSketch(sketch);
 
