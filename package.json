@@ -1,0 +1,23 @@
+{
+  "name": "hephaestus",
+  "version": "1.0.0",
+  "description": "Generative Art API using p5 and others",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon index.js"
+  },
+  "keywords": [
+    "generative",
+    "art"
+  ],
+  "author": "akintayo.segun@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.2",
+    "node-p5": "^1.0.4",
+    "nodemon": "^2.0.15"
+  },
+  "engines": {
+    "node": "14.17.5"
+  }
+}
