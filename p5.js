@@ -93,7 +93,7 @@ const sketch = (p) => {
           p.stroke(rIndex, gIndex, bIndex);
           p.circle(xx, yy, gap/3);
         } else {
-          let rIndex = toNumber(pr.body) % 255;
+          let rIndex = toNumber(pr.closed_at) % 255;
           let gIndex = pr.number % 255;
           let bIndex = pr.user.id % 255;
           p.stroke(rIndex, gIndex, bIndex);
