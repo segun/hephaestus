@@ -57,11 +57,11 @@ const sketch = (p) => {
       p.noStroke();
       if (i % 2 === 0) {
         let rIndex = pr.id % 255;
-        let gIndex = pr.number % 128;
+        let gIndex = pr.number % 255;
         let bIndex = pr.user.id % 255;
         p.fill(rIndex, gIndex, bIndex);
       } else {
-        let rIndex = toNumber(pr.url) % 128;
+        let rIndex = toNumber(pr.url) % 255;
         let gIndex = toNumber(pr.html_url) % 255;
         let bIndex = toNumber(pr.title) % 255;
         p.fill(rIndex, gIndex, bIndex);
