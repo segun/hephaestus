@@ -57,13 +57,13 @@ const sketch = (p) => {
       p.noStroke();
       if (i % 2 === 0) {
         let rIndex = pr.id % 255;
-        let gIndex = pr.number % 255;
-        let bIndex = pr.user.id % 255;
+        let gIndex = 0;
+        let bIndex = 0;
         p.fill(rIndex, gIndex, bIndex);
       } else {
-        let rIndex = toNumber(pr.url) % 255;
-        let gIndex = toNumber(pr.html_url) % 255;
-        let bIndex = toNumber(pr.title) % 255;
+        let rIndex = 0;
+        let gIndex = toNumber(pr.url) % 255;
+        let bIndex = 0;
         p.fill(rIndex, gIndex, bIndex);
       }
       p.beginShape();
@@ -84,8 +84,8 @@ const sketch = (p) => {
         p.strokeWeight(2);
         if (Math.random() < 0.5) {
           let rIndex = toNumber(pr.created_at) % 255;
-          let gIndex = toNumber(pr.updated_at) % 255;
-          let bIndex = toNumber(pr.closed_at) % 255;
+          let gIndex = toNumber(pr.html_url) % 255;
+          let bIndex = toNumber(pr.title) % 255;
 
           p.stroke(255);
           p.line(xx, yy, xx + gap, yy + gap);
@@ -94,8 +94,8 @@ const sketch = (p) => {
           p.circle(xx, yy, gap/3);
         } else {
           let rIndex = toNumber(pr.body) % 255;
-          let gIndex = toNumber(pr.body) % 128;
-          let bIndex = toNumber(pr.body) % 64;
+          let gIndex = pr.number % 255;
+          let bIndex = pr.user.id % 255;
           p.stroke(rIndex, gIndex, bIndex);
           p.line(xx, yy + gap, xx + gap, yy);
           
