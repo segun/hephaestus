@@ -7,8 +7,13 @@ const getCanvas = () => {
   return canvas;  
 }
 
+toNumber = (s) => {
+  return s.split('').map(X => X.toString().charCodeAt(0)).reduce((a, b) => a + b, 0);
+}
+
 const sketch = (p) => {
   p.setup = () => {
+    const pr = pullRequest.pr;
     canvas = p.createCanvas(800, 800); // canvas
     p.angleMode(p.DEGREES);
     p.rectMode(p.DEGREES);
@@ -51,14 +56,14 @@ const sketch = (p) => {
       p.push();
       p.noStroke();
       if (i % 2 === 0) {
-        let rIndex = Math.floor(Math.random() * 255);
-        let gIndex = Math.floor(Math.random() * 128);
-        let bIndex = Math.floor(Math.random() * 255);
+        let rIndex = pr.id % 255;
+        let gIndex = pr.number % 128;
+        let bIndex = pr.user.id % 255;
         p.fill(rIndex, gIndex, bIndex);
       } else {
-        let rIndex = Math.floor(Math.random() * 128);
-        let gIndex = Math.floor(Math.random() * 255);
-        let bIndex = Math.floor(Math.random() * 128);
+        let rIndex = toNumber(pr.url) % 128;
+        let gIndex = toNumber(pr.html_url) % 255;
+        let bIndex = toNumber(pr.title) % 255;
         p.fill(rIndex, gIndex, bIndex);
       }
       p.beginShape();
@@ -78,9 +83,9 @@ const sketch = (p) => {
         let gap = 20;
         p.strokeWeight(2);
         if (Math.random() < 0.5) {
-          let rIndex = Math.floor(Math.random() * 255);
-          let gIndex = Math.floor(Math.random() * 255);
-          let bIndex = Math.floor(Math.random() * 255);
+          let rIndex = toNumber(pr.created_at) % 255;
+          let gIndex = toNumber(pr.updated_at) % 255;
+          let bIndex = toNumber(pr.closed_at) % 255;
 
           p.stroke(255);
           p.line(xx, yy, xx + gap, yy + gap);
@@ -88,9 +93,9 @@ const sketch = (p) => {
           p.stroke(rIndex, gIndex, bIndex);
           p.circle(xx, yy, gap/3);
         } else {
-          let rIndex = Math.floor(Math.random() * 255);
-          let gIndex = Math.floor(Math.random() * 255);
-          let bIndex = Math.floor(Math.random() * 255);          
+          let rIndex = toNumber(pr.body) % 255;
+          let gIndex = toNumber(pr.body) % 128;
+          let bIndex = toNumber(pr.body) % 64;
           p.stroke(rIndex, gIndex, bIndex);
           p.line(xx, yy + gap, xx + gap, yy);
           
@@ -102,8 +107,11 @@ const sketch = (p) => {
   };
 };
 
+const pullRequest = {};
+
 module.exports = {
   sketch, 
   p5,
-  getCanvas
+  getCanvas,
+  pullRequest
 }

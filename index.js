@@ -2,14 +2,13 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 const crypto = require("crypto");
-var cors = require('cors')
-const { p5, sketch, getCanvas } = require("./p5");
+require('dotenv').config();
+var cors = require("cors");
+const { p5, sketch, getCanvas, pullRequest } = require("./p5");
 const app = express();
 app.use(express.json());
 app.use(cors());
 const port = process.env.PORT;
-
-let p5Instance = p5.createSketch(sketch);
 
 app.get("/", (req, res) => {
   res.status(200).json({ status: "ok" });
@@ -21,6 +20,8 @@ app.get("/image/:path", (req, res) => {
 });
 
 app.post("/", (req, res) => {
+  pullRequest.pr = req.body;
+  let p5Instance = p5.createSketch(sketch);
   console.log(req.body);
   const data = req.body;
   const user = data.user.login;
@@ -47,5 +48,5 @@ app.post("/", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log("Hephaestus Started");
+  console.log("Hephaestus Started on PORT: ", port);
 });
