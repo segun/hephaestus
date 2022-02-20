@@ -39,7 +39,8 @@ app.post("/", (req, res) => {
   instance.saveCanvas(getCanvas(), filename, "png").then((filename) => {
     console.log(filename);
     try {
-      const fullUrl = req.protocol + "://" + req.get("host") + req.originalUrl;
+        const protocol = "https";
+      const fullUrl = protocol + "://" + req.get("host") + req.originalUrl;
       res.send(`${fullUrl}image/${filename}`);
     } catch (err) {
       res.send(err);
