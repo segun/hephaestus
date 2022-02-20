@@ -8,7 +8,7 @@ const getCanvas = () => {
 };
 
 toNumber = (s) => {
-  return s
+  return s && s
     .split("")
     .map((X) => X.toString().charCodeAt(0))
     .reduce((a, b) => a + b, 0);
