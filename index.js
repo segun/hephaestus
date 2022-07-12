@@ -41,7 +41,7 @@ app.post("/", (req, res) => {
     try {
         const protocol = "https";
       const fullUrl = protocol + "://" + req.get("host") + req.originalUrl;
-      res.send(`${fullUrl}image/${filename}`);
+      res.send(`${fullUrl}hephaestus/image/${filename}`);
     } catch (err) {
       res.send(err);
     }
